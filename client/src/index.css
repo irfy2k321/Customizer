@@ -1,0 +1,440 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Loading animation */
+@keyframes loadingAnim {
+  0% { transform: translateX(-100%); }
+  50% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+html {
+  font-family: 'Space Grotesk', sans-serif;
+  background-color: #0a0a0a;
+  color: #f5f5f5;
+  scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ffffff;
+  border-radius: 10px;
+}
+
+.app {
+  @apply relative w-full h-screen overflow-hidden;
+}
+
+.canvas-container-home {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.canvas-container-home canvas {
+  pointer-events: auto;
+}
+
+.home {
+  @apply w-fit xl:h-full flex xl:justify-between justify-start items-start flex-col xl:py-8 xl:px-36 sm:p-8 p-6 max-xl:gap-7 absolute z-10;
+  max-width: 65%; /* Limit width to leave space for the shirt on the right */
+}
+
+.home-content {
+  @apply flex-1 xl:justify-center justify-start flex flex-col gap-10;
+}
+
+.head-text {
+  @apply xl:text-[10rem] text-[6rem] xl:leading-[11rem] leading-[7rem] font-black text-white;
+}
+
+.download-btn {
+  @apply w-14 h-14 flex justify-center items-center rounded-full cursor-pointer outline-none border border-white/10 bg-black/20 backdrop-blur-sm;
+}
+
+.editortabs-container {
+  @apply w-16 flex flex-col justify-center items-center ml-1 py-4 gap-4;
+}
+
+.filtertabs-container {
+  @apply absolute z-10 bottom-5 right-0 left-0 w-full flex justify-center items-center flex-wrap gap-4;
+}
+
+.aipicker-container {
+  @apply absolute left-full ml-3 p-3 w-[260px] rounded-md flex flex-col gap-4 bg-black/50 backdrop-blur-md border border-white/10 shadow-lg;
+}
+
+/* Sleek input styles */
+.sleek-input {
+  @apply bg-[#171717] text-white border border-white/10 rounded-md p-3 text-sm focus:outline-none focus:ring-1 focus:ring-white/30;
+}
+
+/* Animated button hover effects */
+.btn-hover-effect {
+  @apply relative overflow-hidden transition-all duration-300;
+}
+.btn-hover-effect::after {
+  @apply content-[''] absolute left-0 top-0 h-full w-0 bg-white/10 transition-all duration-300 ease-in-out;
+}
+.btn-hover-effect:hover::after {
+  @apply w-full;
+}
+
+/* Glassmorphism updated */
+.glassmorphism {
+  @apply bg-black/30 backdrop-blur-md border border-white/10 shadow-xl;
+}
+
+/* Pulse animation */
+@keyframes pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 0.95; }
+}
+.animate-soft-pulse {
+  animation: pulse 4s ease-in-out infinite;
+}
+
+.aipicker-textarea {
+  @apply w-full bg-transparent text-sm border border-gray-300 p-2 outline-none flex-1;
+}
+
+.filepicker-container {
+  @apply absolute left-full ml-3 glassmorphism p-3 w-[195px] h-[220px] flex flex-col rounded-md;
+}
+
+/* Updated FilePicker styles */
+.custom-file-upload {
+  @apply transition-all duration-300 hover:shadow-md cursor-pointer text-center flex items-center justify-center;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.logo-button {
+  @apply transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-md;
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+.logo-button::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: rgba(255,255,255,0.2);
+  transform: rotate(30deg);
+  transition: transform 0.6s;
+  opacity: 0;
+}
+
+.logo-button:hover::after {
+  transform: rotate(30deg) translate(50%, 50%);
+  opacity: 1;
+}
+
+.full-button {
+  @apply transition-all duration-300 ease-in-out;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.full-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background: rgba(255,255,255,0.3);
+  transition: all 0.3s;
+  z-index: -1;
+}
+
+.full-button:hover::before {
+  width: 100%;
+}
+
+/* Sleek button animations from Uiverse.io */
+.sleek-button {
+  position: relative;
+  padding: 10px 20px;
+  border-radius: 7px;
+  border: 1px solid rgb(61, 106, 255);
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 2px;
+  background: transparent;
+  color: #fff;
+  overflow: hidden;
+  box-shadow: 0 0 0 0 transparent;
+  -webkit-transition: all 0.2s ease-in;
+  -moz-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+}
+
+.sleek-button:hover {
+  background: rgb(61, 106, 255);
+  box-shadow: 0 0 30px 5px rgba(0, 142, 236, 0.815);
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+}
+
+.sleek-button:hover::before {
+  -webkit-animation: sh02 0.5s 0s linear;
+  -moz-animation: sh02 0.5s 0s linear;
+  animation: sh02 0.5s 0s linear;
+}
+
+.sleek-button::before {
+  content: '';
+  display: block;
+  width: 0px;
+  height: 86%;
+  position: absolute;
+  top: 7%;
+  left: 0%;
+  opacity: 0;
+  background: #fff;
+  box-shadow: 0 0 50px 30px #fff;
+  -webkit-transform: skewX(-20deg);
+  -moz-transform: skewX(-20deg);
+  -ms-transform: skewX(-20deg);
+  -o-transform: skewX(-20deg);
+  transform: skewX(-20deg);
+}
+
+@keyframes sh02 {
+  from {
+    opacity: 0;
+    left: 0%;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    left: 100%;
+  }
+}
+
+.sleek-button:active {
+  box-shadow: 0 0 0 0 transparent;
+  -webkit-transition: box-shadow 0.2s ease-in;
+  -moz-transition: box-shadow 0.2s ease-in;
+  transition: box-shadow 0.2s ease-in;
+}
+
+/* Upload button variant */
+.sleek-button-upload {
+  background-color: rgb(79, 70, 229);
+  border-color: rgb(79, 70, 229);
+  padding: 8px 16px;
+  width: 100%;
+}
+
+.sleek-button-upload:hover {
+  background-color: rgb(99, 90, 255);
+}
+
+/* Logo button variant */
+.sleek-button-logo {
+  color: #333;
+  border-color: #ccc;
+}
+
+.sleek-button-logo:hover {
+  background: rgb(225, 231, 255);
+  color: rgb(49, 87, 221);
+  box-shadow: 0 0 20px 5px rgba(180, 198, 255, 0.6);
+}
+
+/* Full button variant */
+.sleek-button-full {
+  background-color: rgb(245, 158, 11);
+  border-color: rgb(245, 158, 11);
+}
+
+.sleek-button-full:hover {
+  background-color: rgb(251, 191, 36);
+  box-shadow: 0 0 30px 5px rgba(252, 211, 77, 0.7);
+}
+
+.filepicker-label {
+  @apply border border-gray-300 py-1.5 px-2 rounded-md shadow-sm text-xs text-gray-700 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 cursor-pointer w-fit;
+}
+
+.tab-btn {
+  @apply w-14 h-14 flex justify-center items-center cursor-pointer select-none;
+}
+
+.glassmorphism {
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 2px 30px 0 rgba(31, 38, 135, 0.07);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+input[type="file"] {
+  z-index: -1;
+  position: absolute;
+  opacity: 0;
+}
+
+.sketch-picker {
+  width: 170px !important;
+  background: rgba(255, 255, 255, 0.25) !important;
+  box-shadow: 0 2px 30px 0 rgba(31, 38, 135, 0.07) !important;
+  backdrop-filter: blur(4px) !important;
+  -webkit-backdrop-filter: blur(4px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  border-radius: 6px !important;
+}
+
+.sketch-picker > div:nth-child(3) {
+  display: none !important;
+}
+
+ :root {
+            /* --- Configurable CSS Variables --- */
+            --grid-background: #050505;
+            --cell-background: #1a1a1a;
+            --cell-border-color: #333;
+            --cell-size: 50px;
+            --grid-gap: 1px;
+            --base-hue: 200; /* Starting HSL hue for a nice blue */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--grid-background);
+            overflow: hidden;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            cursor: none; /* Hide default cursor */
+        }
+
+
+        /* --- The Grid --- */
+        .grid-container {
+            position: fixed;
+            inset: 0;
+            display: grid;
+            gap: var(--grid-gap);
+            /* Grid columns and rows are now set dynamically by JS for performance */
+        }
+
+        .grid-cell {
+            background: var(--cell-background);
+            position: relative;
+            /* Using a faster will-change hint */
+            will-change: transform; 
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* --- NEW: Unified "Follow Glow" Effect --- */
+        #glow {
+            position: fixed;
+            left: var(--mouse-x, -1000px);
+            top: var(--mouse-y, -1000px);
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(
+                circle at center,
+                hsla(var(--base-hue), 90%, 70%, 0.2) 0%,
+                hsla(var(--base-hue), 90%, 70%, 0.1) 40%,
+                transparent 70%
+            );
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: -1;
+            transition: background 0.5s ease;
+        }
+
+        /* --- NEW: Elegant "Shockwave" Click Effect --- */
+        .grid-cell.shockwave::before {
+            content: '';
+            position: absolute;
+            inset: -1px; /* Overlap border */
+            background: hsl(var(--shockwave-hue), 90%, 70%);
+            z-index: 2;
+            animation: shockwave 0.8s cubic-bezier(0.2, 0.9, 0.3, 1) forwards;
+            animation-delay: var(--delay);
+            opacity: 0;
+            box-shadow: 0 0 15px 5px hsl(var(--shockwave-hue), 90%, 70%);
+        }
+
+        @keyframes shockwave {
+            0% { 
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            30% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: scale(2);
+            }
+        }
+        
+        /* --- NEW: Subtle Hover Effect --- */
+        .grid-cell:hover {
+            transform: scale(1.1);
+            background: hsl(var(--base-hue), 80%, 15%);
+            z-index: 10;
+        }
+        
+        /* --- Custom Cursor --- */
+        .custom-cursor {
+            position: fixed;
+            width: 25px;
+            height: 25px;
+            border: 2px solid hsl(var(--base-hue), 90%, 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: transform 0.2s, background 0.2s, border-color 0.5s ease;
+        }
+
+        .custom-cursor.clicking {
+            transform: translate(-50%, -50%) scale(0.8);
+            background: hsl(var(--base-hue), 90%, 70%);
+        }
